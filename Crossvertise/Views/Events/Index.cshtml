@@ -1,0 +1,36 @@
+﻿@model Crossvertise.DTO.EventViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    function getEvents(month) {
+        $.ajax({
+            url: '@Url.Action("GetEvents", "Events")',
+            data: { month: month},
+            type: "POST",
+            success: function(data) {
+                $('#eventList').html(data);
+            }
+        });
+    }
+</script>
+<div class="content">
+    <div class="row">
+        @foreach (var m in Model.Months)
+        {
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <button class="btn btn-primary months" type="button" onclick="getEvents(@m.Key)">@m.Value</button>
+            </div>
+        }
+        <br />
+        <div class="row" id="eventList">
+        </div>
+    </div>
+
+</div>
+
+
+
+

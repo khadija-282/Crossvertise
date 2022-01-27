@@ -1,0 +1,44 @@
+﻿@model Crossvertise.DTO.Event
+
+<div>
+     
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            Date:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventAtstr)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Organizer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Organizer)
+        </dd>
+        <dt>
+            Attendee
+        </dt>
+        @foreach (var item in Model.Details)
+        {
+            <dd>
+                @item.AttendeeName
+            </dd>
+
+        }
+
+
+    </dl>
+</div>
+ 

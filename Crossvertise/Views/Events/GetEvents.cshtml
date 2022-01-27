@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Crossvertise.DTO.Event>
+
+<script>
+    function getEventDetail(eventId) {
+        $.ajax({
+            url: '@Url.Action("GetEventDetails", "Events")',
+            data: { eventId: eventId},
+            type: "POST",
+            success: function(data) {
+                $('#eventDetails').html(data);
+            }
+        });
+    }
+</script>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <table class="table table-borderless">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventAtstr)
+                    </td>
+                    <td>
+                        <a onclick="getEventDetail(@item.Id)">@item.Name</a>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="eventDetails">
+
+    </div>
+</div>
